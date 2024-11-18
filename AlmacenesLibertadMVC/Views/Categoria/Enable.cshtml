@@ -1,0 +1,180 @@
+﻿@*cambiamos la obtencion del modelo para PagedList*@
+@model PagedList.IPagedList<AlmacenesLibertadMVC.categoria>
+@*agregamos la importacion del PagedList*@
+@using PagedList.Mvc;
+
+@{
+    //cambiando el titulo de la pagina web
+    ViewBag.Title = "Habilitacion Categoria";
+}
+
+@*cambiando el nombe del titulo*@
+<h2>Habilitar Categoria</h2>
+
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.nomcat)*@
+                    Codigo
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.estcat)*@
+                    Nombre
+                </th>
+                <th>Estado</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.codcat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nomcat)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.estcat)*@
+                        @if (item.estcat)
+                        {
+
+
+                            <span>Habilitado</span>
+                        }
+                        else
+                        {
+                            <span>Desabilitado</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Habilitar", "EnableConfirmed", new { id = item.codcat }, new { @class = "btn btn-warning" })*@
+                        <button class="btn btn-warning enable-btn" data-id="@item.codcat">Habilitar</button>
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Deshabilitar", "DisableConfirmed", new { id = item.codcat }, new { @class = "btn btn-danger" })*@
+                        <button class="btn btn-danger disable-btn" data-id="@item.codcat">Deshabilitar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            @*Para el boton anterior*@
+            @if (Model.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link"
+                       href="@Url.Action("Enable", new {page=Model.PageNumber-1})">
+                        Anterior
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled"><span class="page-link">Anterior</span></li>
+            }
+
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                if (i == Model.PageNumber)
+                {
+                    <li class="page-item"><span class="page-link">@i</span></li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="@Url.Action("Enable", new {page=i})">
+                            @i
+                        </a>
+                    </li>
+                }
+            }
+
+            @*Para el boton siguiente*@
+            @if (Model.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link"
+                       href="@Url.Action("Enable", new {page=Model.PageNumber+1})">
+                        Siguiente
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+            }
+        </ul>
+    </nav>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".enable-btn").click(function () {
+            //obtener el codigo
+            var id = $(this).data("id");
+            //obtener la fila
+            var row = $(this).closest("tr");
+            $.ajax({
+                url: '@Url.Action("EnableConfirmed", "Categoria")/'+id,
+                type: 'GET',
+                headers: {
+                    'X-Request-With':'XMLHttpRequest'
+                },
+                success: function (response) {
+                    //actualizando el estado de la fila
+                    if (response.success) {
+                        row.find("td:eq(2)").html("<span>Habilitado</span>");
+                    } else {
+                        alert("Error:" + response.message)
+                    }
+                },
+                error: function () {
+                    alert("No se pudo procesar la solicitud");
+                }
+            }
+
+            );
+
+        });
+    });
+
+        $(document).ready(function () {
+            $(".disable-btn").click(function () {
+            //obtener el codigo
+            var id = $(this).data("id");
+            //obtener la fila
+            var row = $(this).closest("tr");
+            $.ajax({
+                url: '@Url.Action("DisableConfirmed", "Categoria")/'+id,
+                type: 'GET',
+                headers: {
+                    'X-Request-With':'XMLHttpRequest'
+                },
+                success: function (response) {
+                    //actualizando el estado de la fila
+                    if (response.success) {
+                        row.find("td:eq(2)").html("<span>Deshabilitado</span>");
+                    } else {
+                        alert("Error:" + response.message)
+                    }
+                },
+                error: function () {
+                    alert("No se pudo procesar la solicitud");
+                }
+            }
+
+            );
+
+        });
+    });
+</script>
