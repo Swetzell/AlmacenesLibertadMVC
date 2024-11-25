@@ -11,10 +11,10 @@ namespace AlmacenesLibertadMVC
 {
     using System;
     
-    public partial class SP_MostrarMarcaTodo_Result
+    public partial class sp_ListarTipoDocumentos_Result
     {
-        public int codmar { get; set; }
-        public string nommar { get; set; }
-        public bool estmar { get; set; }
+        public int codtipd { get; set; }
+        public string nomtipd { get; set; }
+        public bool esttipd { get; set; }
     }
 }

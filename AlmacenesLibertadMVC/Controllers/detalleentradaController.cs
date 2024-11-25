@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -10,107 +10,116 @@ using AlmacenesLibertadMVC;
 
 namespace AlmacenesLibertadMVC.Controllers
 {
-    public class MarcaController : Controller
+    public class detalleentradaController : Controller
     {
         private bdalmaceneslibertad2Entities db = new bdalmaceneslibertad2Entities();
 
-        // GET: Marca
+        // GET: detalleentrada
         public ActionResult Index()
         {
-            return View(db.marca.ToList());
+            var detalleentrada = db.detalleentrada.Include(d => d.producto).Include(d => d.registroentrada);
+            return View(detalleentrada.ToList());
         }
 
-        // GET: Marca/Details/5
+        // GET: detalleentrada/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            marca marca = db.marca.Find(id);
-            if (marca == null)
+            detalleentrada detalleentrada = db.detalleentrada.Find(id);
+            if (detalleentrada == null)
             {
                 return HttpNotFound();
             }
-            return View(marca);
+            return View(detalleentrada);
         }
 
-        // GET: Marca/Create
+        // GET: detalleentrada/Create
         public ActionResult Create()
         {
+            ViewBag.codpro = new SelectList(db.producto, "codpro", "nompro");
+            ViewBag.nroent = new SelectList(db.registroentrada, "nroent", "nroent");
             return View();
         }
 
-        // POST: Marca/Create
+        // POST: detalleentrada/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "codmar,nommar,estmar")] marca marca)
+        public ActionResult Create([Bind(Include = "nrodetent,canent,preent,nroent,codpro")] detalleentrada detalleentrada)
         {
             if (ModelState.IsValid)
             {
-                db.marca.Add(marca);
+                db.detalleentrada.Add(detalleentrada);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(marca);
+            ViewBag.codpro = new SelectList(db.producto, "codpro", "nompro", detalleentrada.codpro);
+            ViewBag.nroent = new SelectList(db.registroentrada, "nroent", "nroent", detalleentrada.nroent);
+            return View(detalleentrada);
         }
 
-        // GET: Marca/Edit/5
+        // GET: detalleentrada/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            marca marca = db.marca.Find(id);
-            if (marca == null)
+            detalleentrada detalleentrada = db.detalleentrada.Find(id);
+            if (detalleentrada == null)
             {
                 return HttpNotFound();
             }
-            return View(marca);
+            ViewBag.codpro = new SelectList(db.producto, "codpro", "nompro", detalleentrada.codpro);
+            ViewBag.nroent = new SelectList(db.registroentrada, "nroent", "nroent", detalleentrada.nroent);
+            return View(detalleentrada);
         }
 
-        // POST: Marca/Edit/5
+        // POST: detalleentrada/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "codmar,nommar,estmar")] marca marca)
+        public ActionResult Edit([Bind(Include = "nrodetent,canent,preent,nroent,codpro")] detalleentrada detalleentrada)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(marca).State = EntityState.Modified;
+                db.Entry(detalleentrada).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(marca);
+            ViewBag.codpro = new SelectList(db.producto, "codpro", "nompro", detalleentrada.codpro);
+            ViewBag.nroent = new SelectList(db.registroentrada, "nroent", "nroent", detalleentrada.nroent);
+            return View(detalleentrada);
         }
 
-        // GET: Marca/Delete/5
+        // GET: detalleentrada/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            marca marca = db.marca.Find(id);
-            if (marca == null)
+            detalleentrada detalleentrada = db.detalleentrada.Find(id);
+            if (detalleentrada == null)
             {
                 return HttpNotFound();
             }
-            return View(marca);
+            return View(detalleentrada);
         }
 
-        // POST: Marca/Delete/5
+        // POST: detalleentrada/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            marca marca = db.marca.Find(id);
-            db.marca.Remove(marca);
+            detalleentrada detalleentrada = db.detalleentrada.Find(id);
+            db.detalleentrada.Remove(detalleentrada);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

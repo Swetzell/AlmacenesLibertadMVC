@@ -10,11 +10,17 @@
 namespace AlmacenesLibertadMVC
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class SP_MostrarCategoriaTodo_Result
+    public partial class detallesalida
     {
-        public int codcat { get; set; }
-        public string nomcat { get; set; }
-        public bool estcat { get; set; }
+        public int nrodetsal { get; set; }
+        public int canent { get; set; }
+        public decimal preent { get; set; }
+        public int nrosal { get; set; }
+        public int codpro { get; set; }
+    
+        public virtual producto producto { get; set; }
+        public virtual registrosalida registrosalida { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace AlmacenesLibertadMVC.Controllers
 {
     public class CategoriaController : Controller
     {
-        private bdalmaceneslibertadEntities db = new bdalmaceneslibertadEntities();
+        private bdalmaceneslibertad2Entities db = new bdalmaceneslibertad2Entities();
 
         //GET -> se utiliza para rutas y consultas(obtener informacion)
         // GET: Categoria -> Mostrar Categoria

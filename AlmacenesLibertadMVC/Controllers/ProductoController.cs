@@ -12,7 +12,7 @@ namespace AlmacenesLibertadMVC.Controllers
 {
     public class ProductoController : Controller
     {
-        private bdalmaceneslibertadEntities db = new bdalmaceneslibertadEntities();
+        private bdalmaceneslibertad2Entities db = new bdalmaceneslibertad2Entities();
 
         // GET: Producto
         public ActionResult Index()

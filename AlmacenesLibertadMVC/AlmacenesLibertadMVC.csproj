@@ -154,9 +154,25 @@
       <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\detalleentradaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="destino.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="detalleentrada.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="detallesalida.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="distrito.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="empleado.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -167,31 +183,67 @@
       <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="proveedor.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="registroentrada.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="registrosalida.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rol.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MostrarCategoriaTodo_Result.cs">
+    <Compile Include="sp_ListarCategorias_Result.cs">
       <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MostrarCategoria_Result.cs">
+    <Compile Include="sp_ListarDestinos_Result.cs">
       <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MostrarMarcaTodo_Result.cs">
+    <Compile Include="sp_ListarDetallesEntradaPorNro_Result.cs">
       <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MostrarMarca_Result.cs">
+    <Compile Include="sp_ListarDetallesSalidaPorNro_Result.cs">
       <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MostrarProductoTodo_Result.cs">
+    <Compile Include="sp_ListarDistritos_Result.cs">
       <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MostrarProducto_Result.cs">
+    <Compile Include="sp_ListarEmpleados_Result.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ListarMarcas_Result.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ListarProductos_Result.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ListarProveedores_Result.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ListarRegistrosEntrada_Result.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ListarRegistrosSalida_Result.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ListarRoles_Result.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ListarTipoDocumentos_Result.cs">
       <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
+      <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipodocumento.cs">
       <DependentUpon>AlmacenesLibertad.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -226,13 +278,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <EntityDeploy Include="AlmacenesLibertad.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AlmacenesLibertad.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="AlmacenesLibertad.edmx.diagram">
-      <DependentUpon>AlmacenesLibertad.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -261,6 +306,13 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="AlmacenesLibertad.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AlmacenesLibertad.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="AlmacenesLibertad.edmx.diagram">
+      <DependentUpon>AlmacenesLibertad.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -302,6 +354,11 @@
     <Content Include="Views\Producto\Edit.cshtml" />
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\Categoria\Enable.cshtml" />
+    <Content Include="Views\detalleentrada\Create.cshtml" />
+    <Content Include="Views\detalleentrada\Delete.cshtml" />
+    <Content Include="Views\detalleentrada\Details.cshtml" />
+    <Content Include="Views\detalleentrada\Edit.cshtml" />
+    <Content Include="Views\detalleentrada\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

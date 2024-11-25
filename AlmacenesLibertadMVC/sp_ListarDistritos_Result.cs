@@ -11,10 +11,10 @@ namespace AlmacenesLibertadMVC
 {
     using System;
     
-    public partial class SP_MostrarMarca_Result
+    public partial class sp_ListarDistritos_Result
     {
-        public int codmar { get; set; }
-        public string nommar { get; set; }
-        public bool estmar { get; set; }
+        public int coddis { get; set; }
+        public string nomdis { get; set; }
+        public bool estdis { get; set; }
     }
 }

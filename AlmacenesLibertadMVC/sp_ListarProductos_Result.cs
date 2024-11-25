@@ -11,10 +11,15 @@ namespace AlmacenesLibertadMVC
 {
     using System;
     
-    public partial class SP_MostrarCategoria_Result
+    public partial class sp_ListarProductos_Result
     {
-        public int codcat { get; set; }
+        public int codpro { get; set; }
+        public string nompro { get; set; }
+        public string despro { get; set; }
+        public decimal prepro { get; set; }
+        public int canpro { get; set; }
+        public bool estpro { get; set; }
         public string nomcat { get; set; }
-        public bool estcat { get; set; }
+        public string nommar { get; set; }
     }
 }

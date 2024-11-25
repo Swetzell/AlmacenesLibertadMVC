@@ -12,29 +12,22 @@ namespace AlmacenesLibertadMVC
     using System;
     using System.Collections.Generic;
     
-    public partial class producto
+    public partial class distrito
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public producto()
+        public distrito()
         {
-            this.detalleentrada = new HashSet<detalleentrada>();
-            this.detallesalida = new HashSet<detallesalida>();
+            this.empleado = new HashSet<empleado>();
+            this.proveedor = new HashSet<proveedor>();
         }
     
-        public int codpro { get; set; }
-        public string nompro { get; set; }
-        public string despro { get; set; }
-        public decimal prepro { get; set; }
-        public int canpro { get; set; }
-        public bool estpro { get; set; }
-        public int codcat { get; set; }
-        public int codmar { get; set; }
+        public int coddis { get; set; }
+        public string nomdis { get; set; }
+        public bool estdis { get; set; }
     
-        public virtual categoria categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalleentrada> detalleentrada { get; set; }
+        public virtual ICollection<empleado> empleado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detallesalida> detallesalida { get; set; }
-        public virtual marca marca { get; set; }
+        public virtual ICollection<proveedor> proveedor { get; set; }
     }
 }
